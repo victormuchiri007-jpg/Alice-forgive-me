@@ -1,0 +1,232 @@
+/* styles.css (UPDATED: hearts + runaway button support) */
+:root{
+  --bg1:#fff1f6;
+  --bg2:#eef7ff;
+  --card:#ffffffcc;
+  --text:#111827;
+  --muted:#6b7280;
+
+  --yes1:#ff3d87;
+  --yes2:#ff86c2;
+
+  --no1:#374151;
+  --no2:#0b1220;
+
+  --ring: rgba(255, 61, 135, .35);
+}
+
+*{ box-sizing:border-box; }
+html, body { height: 100%; }
+
+body{
+  margin:0;
+  display:grid;
+  place-items:center;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(1100px 650px at 15% 10%, var(--bg1), transparent 60%),
+    radial-gradient(900px 520px at 85% 25%, var(--bg2), transparent 60%),
+    linear-gradient(180deg, #ffffff, #fdf2f8);
+  overflow:hidden;
+}
+
+.card{
+  width:min(560px, 92vw);
+  padding:28px 22px 18px;
+  border-radius:26px;
+  background:var(--card);
+  box-shadow: 0 20px 60px rgba(0,0,0,.12);
+  border:1px solid rgba(255,255,255,.75);
+  backdrop-filter: blur(10px);
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.topline{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  margin-bottom:10px;
+}
+
+.badge{
+  font-size:12px;
+  font-weight:800;
+  padding:6px 10px;
+  border-radius:999px;
+  background: rgba(255, 255, 255, .75);
+  border: 1px solid rgba(17,24,39,.08);
+}
+
+.spark{
+  filter: drop-shadow(0 6px 14px rgba(255, 61, 135, .35));
+}
+
+.flowers{
+  font-size:28px;
+  letter-spacing:6px;
+  opacity:.98;
+  margin: 4px 0 14px;
+  transition: transform .25s ease, filter .25s ease;
+}
+
+h1{
+  margin:0 0 10px;
+  font-size:30px;
+}
+
+.message{
+  margin:0 auto 16px;
+  font-size:18px;
+  line-height:1.45;
+  max-width: 48ch;
+}
+
+/* Runaway button container */
+.buttonsWrap{
+  position: relative;
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  align-items:center;
+  margin-top:12px;
+  flex-wrap:wrap;
+  min-height: 64px; /* gives room when No becomes absolute */
+}
+
+.btn{
+  border:0;
+  border-radius:999px;
+  padding:14px 18px;
+  font-weight:800;
+  cursor:pointer;
+  transition: transform .15s ease, box-shadow .15s ease, filter .2s ease, opacity .2s ease, left .12s ease, top .12s ease;
+  user-select:none;
+  outline: none;
+}
+
+.btn:focus-visible{
+  box-shadow: 0 0 0 4px var(--ring), 0 10px 22px rgba(0,0,0,.12);
+}
+
+.btn:active{ transform: scale(.98); }
+
+.yes{
+  background: linear-gradient(135deg, var(--yes1), var(--yes2));
+  color:white;
+  box-shadow: 0 12px 26px rgba(255,61,135,.32);
+}
+
+.no{
+  background: linear-gradient(135deg, var(--no1), var(--no2));
+  color:white;
+  box-shadow: 0 12px 26px rgba(17,24,39,.25);
+  opacity:.92;
+}
+
+/* Once we enable runaway mode, we switch No to absolute */
+.no.runaway{
+  position:absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  touch-action: none;
+}
+
+.ghost{
+  background: rgba(255,255,255,.75);
+  border: 1px solid rgba(17,24,39,.10);
+  color: var(--text);
+  box-shadow: none;
+  margin-top: 10px;
+}
+
+.hint{
+  margin:14px 0 0;
+  font-size:13px;
+  color: var(--muted);
+}
+
+.result{
+  margin-top:22px;
+  padding:18px 14px;
+  border-radius:18px;
+  background: rgba(255,255,255,.7);
+  border:1px dashed rgba(255,61,135,.35);
+}
+
+.result h2{ margin:4px 0 8px; }
+
+.tiny{
+  color: var(--muted);
+  margin: 8px 0 0;
+  font-size: 13px;
+}
+
+.copied{
+  margin: 8px 0 0;
+  color: #065f46;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.hidden{ display:none; }
+
+.confetti{
+  font-size:22px;
+  letter-spacing:6px;
+  margin-bottom:6px;
+}
+
+.footer{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+  margin-top:18px;
+  opacity:.9;
+}
+
+.footerText{
+  font-size:12px;
+  color: var(--muted);
+}
+
+/* Animations */
+.pop{ animation: pop .25s ease; }
+@keyframes pop{
+  0%{ transform: scale(1); }
+  60%{ transform: scale(1.08); }
+  100%{ transform: scale(1); }
+}
+
+.floaty{
+  transform: translateY(-5px);
+  filter: saturate(1.25) brightness(1.05);
+}
+
+/* Floating hearts layer */
+.heartsLayer{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index: 5;
+}
+
+.heart{
+  position:absolute;
+  font-size:18px;
+  opacity: 0;
+  transform: translateY(0) scale(1);
+  animation: floatUp 2.8s ease-in forwards;
+  filter: drop-shadow(0 10px 18px rgba(255,61,135,.22));
+}
+
+@keyframes floatUp{
+  0%   { opacity:0; transform: translateY(10px) scale(.9); }
+  10%  { opacity:.95; }
+  100% { opacity:0; transform: translateY(-120px) scale(1.25); }
+}
