@@ -1,0 +1,65 @@
+<!-- index.html (UPDATED) -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Victor ↔ Alice 💐</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- Floating hearts layer -->
+  <div id="heartsLayer" class="heartsLayer" aria-hidden="true"></div>
+
+  <main class="card" role="main" id="card">
+    <div class="topline" aria-hidden="true">
+      <span class="badge">Victor</span>
+      <span class="spark">✨</span>
+      <span class="badge">Alice</span>
+    </div>
+
+    <div class="flowers" id="flowers" aria-hidden="true">🌸🌼🌺💐</div>
+
+    <h1 id="title">Hey Alice… 🥺</h1>
+    <p class="message" id="message">
+      It’s Victor. I just wanted to ask you something important.
+      <br><br>
+      Have you forgiven me?
+    </p>
+
+    <!-- Make this wrapper relative so the No button can run inside it -->
+    <div class="buttonsWrap" id="buttonsWrap">
+      <button id="yesBtn" class="btn yes" aria-label="Yes, I forgive you">Yes 💖</button>
+      <button id="noBtn" class="btn no" aria-label="No, not yet">No 🙈</button>
+    </div>
+
+    <p class="hint" id="hint">Be honest… but please be gentle 😅</p>
+
+    <div class="result hidden" id="result" aria-live="polite">
+      <div class="confetti" aria-hidden="true">✨🎉✨🎉✨</div>
+      <h2>Thank you, Alice 💗</h2>
+      <p id="finalLine">
+        I promise to do better, listen more, and love you the way you deserve.
+      </p>
+      <p class="tiny">— Victor 💐</p>
+
+      <button id="copyBtn" class="btn ghost" type="button">Copy a sweet reply 💌</button>
+      <p class="copied hidden" id="copied">Copied ✅</p>
+    </div>
+
+    <footer class="footer">
+      <span aria-hidden="true">🌹</span>
+      <span class="footerText">Made with love & courage.</span>
+      <span aria-hidden="true">🌹</span>
+    </footer>
+  </main>
+
+  <!-- Music (put a file named "music.mp3" in the same folder) -->
+  <audio id="bgMusic" preload="auto" loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
